@@ -1,9 +1,27 @@
-public class OrderService {
 
+package com.example;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * Service responsible for validating and creating customer orders.
+ */
+@Service
+public final class OrderService {
+
+    /**
+     * Validates order details and creates an order.
+     *
+     * @param customerName the customer's name
+     * @param productName the product being ordered
+     * @param price the order price
+     * @return confirmation message
+     * @throws IllegalArgumentException if order details are invalid
+     */
     public String createOrder(
-            String customerName,
-            String productName,
-            double price) {
+            final String customerName,
+            final String productName,
+            final double price) {
 
         if (customerName == null || customerName.isBlank()) {
             throw new IllegalArgumentException(
