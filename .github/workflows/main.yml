@@ -15,7 +15,7 @@ permissions:
 
 jobs:
 
-  # JOB 1: BUILD
+  # JOB 1: BUILD APPLICATION
   build:
     name: Build Application
     runs-on: ubuntu-latest
@@ -36,6 +36,13 @@ jobs:
 
       - name: Package Application
         run: mvn -B package -DskipTests
+
+      # BUILD DOCKER IMAGE
+      - name: Build Docker Image
+        run: docker build -t java-order-app:latest .
+
+      - name: Verify Docker Image
+        run: docker images java-order-app
 
 
   # JOB 2: TEST
@@ -71,7 +78,7 @@ jobs:
   quality:
     name: Code Quality Check
     runs-on: ubuntu-latest
-    needs: build
+    needs: test
 
     steps:
       - name: Checkout Code
@@ -92,7 +99,7 @@ jobs:
   security:
     name: Dependency Security Scan
     runs-on: ubuntu-latest
-    needs: [build, test, quality]
+    needs:  Code Quality
 
     steps:
       - name: Checkout Code
