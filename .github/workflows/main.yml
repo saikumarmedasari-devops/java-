@@ -35,7 +35,7 @@ jobs:
         run: mvn -B clean compile
 
       - name: Package Application
-        run: mvn -B package -DskipTests
+        run: mvn -B clean package
 
       # BUILD DOCKER IMAGE
       - name: Build Docker Image
