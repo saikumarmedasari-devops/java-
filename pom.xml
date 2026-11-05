@@ -1,34 +1,46 @@
 
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Spring Boot Parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.3</version>
+        <version>4.1.2</version>
         <relativePath/>
     </parent>
 
+    <!-- Project Information -->
     <groupId>com.example</groupId>
     <artifactId>java-testing</artifactId>
     <version>1.0</version>
+    <name>java-testing</name>
+    <description>Java Order Management DevSecOps Application</description>
 
+    <packaging>jar</packaging>
+
+    <!-- Project Properties -->
     <properties>
         <java.version>21</java.version>
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <!-- Dependencies -->
     <dependencies>
 
-        <!-- Spring Boot REST API -->
+        <!-- Spring Boot Web MVC -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-webmvc</artifactId>
         </dependency>
 
-        <!-- JUnit and Spring Boot testing -->
+        <!-- Spring Boot Testing and JUnit -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -37,38 +49,51 @@
 
     </dependencies>
 
+    <!-- Build Configuration -->
     <build>
 
-        <!-- Keep your existing directory structure -->
+        <!-- Your Existing Folder Structure -->
         <sourceDirectory>src/main</sourceDirectory>
         <testSourceDirectory>src/test</testSourceDirectory>
 
         <plugins>
 
-            <!-- Java compiler -->
+            <!-- Java Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.1</version>
                 <configuration>
                     <release>21</release>
+                    <parameters>true</parameters>
                 </configuration>
             </plugin>
 
-            <!-- Run JUnit tests -->
+            <!-- Unit Testing -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.4</version>
             </plugin>
 
-            <!-- Create executable Spring Boot JAR -->
+            <!-- Spring Boot Executable JAR -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-        </plugins>
+            <!-- Checkstyle Code Quality -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                </configuration>
+            </plugin>
 
+        </plugins>
     </build>
 
 </project>
-
